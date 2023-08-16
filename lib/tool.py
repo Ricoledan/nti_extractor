@@ -1,8 +1,14 @@
 from langchain.tools import Tool
 from lib.sparqlrunner import run_sparql
 from lib.vocab_lookup import vocab_lookup
+from lib.document_reader import document_reader
 
 tools = [
+    Tool(
+        name="DocumentReader",
+        func=(lambda x: document_reader()),
+        description="useful for when you need to know the contents of a document",
+    ),
     Tool(
         name="ItemLookup",
         func=(lambda x: vocab_lookup(x, entity_type="item")),
